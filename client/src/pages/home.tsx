@@ -1144,29 +1144,7 @@ function ProjectsSection() {
   );
 }
 
-const recommendations = [
-  {
-    name: "Sebrianne Ferguson",
-    title: "IT Web Services/Security @ SMCCCD | CompTIA Security+ Certified",
-    relationship: "Senior colleague at SMCCCD ITS",
-    quote:
-      "I had the pleasure of working with Heba when she was our student assistant at SMCCCD ITS. She is highly motivated, energetic and always open to learning new things and solving problems. Any task I gave her was completed cleanly, quickly and professionally. She has a very rare and inspiring aptitude to learn and grow, and I give her my highest recommendation.",
-  },
-  {
-    name: "Sri Narayanan",
-    title: "Founder of Kodely | Forbes 30u30",
-    relationship: "Direct manager at Kodely",
-    quote:
-      "I am pleased to highly recommend Alexia Moreanu for any role in operations, logistics, or project management. Having worked closely with Heba in her role as Operations Coordinator at Kodely, I have seen firsthand her exceptional ability to think outside the box, solve complex challenges, and drive efficiency in fast-paced environments.",
-  },
-  {
-    name: "Michael Fariss",
-    title: "Making IT more personable",
-    relationship: "Direct manager",
-    quote:
-      "Heba was great to work with and did a fantastic job with the programming projects that were assigned. Heba took the time to research possible solutions and implemented them cleanly. Additionally, when something needed clarification or a change to the design was needed Heba clearly communicated the tradeoffs so that we could decide how to move forward.",
-  },
-];
+const recommendations: any[] = [];
 
 function RecommendationsSection() {
   const [currentRec, setCurrentRec] = useState(0);
@@ -1249,21 +1227,7 @@ function RecommendationsSection() {
   );
 }
 
-const certifications = [
-  { name: "Google IT Automation with Python", issuer: "Google", date: "Apr 2025" },
-  { name: "Introduction to AI in Digital Marketing", issuer: "HubSpot", date: "Mar 2025" },
-  { name: "Configuration Management and the Cloud", issuer: "Google", date: "Jan 2025" },
-  { name: "Troubleshooting and Debugging Techniques", issuer: "Google", date: "Dec 2024" },
-  { name: "Introduction to Git and GitHub", issuer: "Google", date: "Dec 2024" },
-  { name: "Using Python to Interact with the Operating System", issuer: "Google", date: "Dec 2024" },
-  { name: "Crash Course on Python", issuer: "Google", date: "Dec 2024" },
-  { name: "Stanford Science Small Groups — U-Net AI for Biomedical Image Segmentation", issuer: "Stanford University", date: "Nov 2024" },
-  { name: "Stanford CCOP Bootcamp — Certificate of Completion", issuer: "Stanford University", date: "Aug 2024" },
-  { name: "Stanford Fair for Community College Students", issuer: "Stanford University", date: "May 2025" },
-  { name: "IRB Administration", issuer: "CITI Program", date: "Jun 2024" },
-  { name: "Responsible Conduct of Research for Engineers", issuer: "CITI Program", date: "Jun 2024" },
-  { name: "Stanford Code in Place — Certificate of Completion", issuer: "Stanford / Code in Place", date: "Jun 2024" },
-];
+const certifications: any[] = [];
 
 function CertificationsSection() {
   const [showAll, setShowAll] = useState(false);
