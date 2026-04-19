@@ -200,16 +200,7 @@ function Navbar() {
     return () => document.removeEventListener("click", close);
   }, [mobileOpen]);
 
-  const links = [
-    { label: "About", href: "#about" },
-    { label: "Experience", href: "#experience" },
-    { label: "Research", href: "#research" },
-    { label: "Projects", href: "#projects" },
-    { label: "Leadership", href: "#leadership" },
-    { label: "Skills", href: "#skills" },
-    { label: "Certifications", href: "#certifications" },
-    { label: "Contact", href: "#contact" },
-  ];
+  const links: { label: string; href: string }[] = [];
 
   return (
     <motion.nav
@@ -231,18 +222,7 @@ function Navbar() {
         >
           H.A.
         </a>
-        <div className="hidden md:flex items-center gap-1">
-          {links.map((link) => (
-            <a
-              key={link.href}
-              href={link.href}
-              data-testid={`link-nav-${link.label.toLowerCase()}`}
-              className="px-3 py-2 text-sm text-muted-foreground transition-colors rounded-md"
-            >
-              {link.label}
-            </a>
-          ))}
-        </div>
+        
         <div className="flex items-center gap-2">
           <a
             href="https://www.linkedin.com/in/heba-alazzeh/"
@@ -355,7 +335,7 @@ function HeroSection() {
           transition={{ duration: 0.8, delay: 0.3 }}
           data-testid="text-hero-subtitle"
         >
-          Software Engineer & AI Researcher
+          Computer Science and Natural Sciences
         </motion.p>
 
         <motion.h1
@@ -365,7 +345,7 @@ function HeroSection() {
           transition={{ duration: 0.8, delay: 0.5 }}
           data-testid="text-hero-name"
         >
-          Heba Alazzeh
+          Alexia Moreanu
         </motion.h1>
 
         <motion.div
@@ -376,7 +356,7 @@ function HeroSection() {
         >
           <GraduationCap className="w-4 h-4" />
           <span className="text-sm md:text-base font-sans">
-            UC Berkeley Computer Science
+            Minerva University
           </span>
           <span className="mx-2 text-primary">|</span>
           <MapPin className="w-4 h-4" />
@@ -391,7 +371,7 @@ function HeroSection() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.9 }}
         >
-          {["Snap Inc.", "Stanford", "Uber"].map((company) => (
+          {["Product", "AI", "Research"].map((company) => (
             <Badge
               key={company}
               variant="outline"
@@ -516,14 +496,14 @@ function AboutSection() {
         >
           <img
             src={hebaPhoto}
-            alt="Heba Alazzeh"
+            alt="Alexia Moreanu"
             className="w-48 h-48 md:w-56 md:h-56 rounded-full object-cover object-[center_20%] border-4 border-primary/30 shadow-lg shadow-primary/10"
             data-testid="img-about-photo"
           />
         </motion.div>
         <div className="space-y-4 text-center md:text-left">
           <p className="text-lg leading-relaxed text-foreground/90" data-testid="text-about-intro">
-            Hi, my name is Heba, and I am a Computer Science student at UC Berkeley. I am passionate about building accessible, impactful technology and using software to solve real-world problems. I am driven by a desire to build technology that empowers people and communities, grounded in hands-on technical experience and collaborative problem-solving.
+            Hi, my name is Alexia! Third-year double major in Natural Sciences and Computational Sciences at Minerva University, interested in biology, complex systems, and AI-driven approaches to real-world problems.
           </p>
         </div>
       </div>
@@ -544,69 +524,54 @@ function AboutSection() {
 
 const experiences = [
   {
-    company: "Snap Inc. (Snapchat)",
-    role: "Snap Lens Academy Intern",
-    period: "June 2025 - August 2025",
-    icon: SiSnapchat,
-    color: "text-yellow-500 dark:text-yellow-400",
+    company: "Buenos Aires Medical School",
+    role: "Program Manager, Vaccine Discovery (Research Assistant)",
+    period: "Sept 2025 - Present",
+    icon: FlaskConical,
+    color: "text-green-500",
     description: [
-      "Developed and deployed 30+ Augmented Reality experiences using JavaScript and Lens Studio's API framework, reaching 4M+ global users.",
-      "Selected as 1 of 15 from 300+ applicants for Snap's AR/VR engineering academy.",
-      "Delivered 10+ live demos to Snap's CEO, CTO, and engineering teams. Featured in CEO Evan Spiegel's post.",
+      "Designed and implemented scalable R/Python genomic analysis pipelines, reducing candidate screening time by 50%.",
+      "Integrated computational workflows with wet-lab validation, accelerating vaccine development timelines by 25%.",
+      "Version-controlled pipelines using Git and documented reproducible workflows for cross-team use.",
     ],
-    tags: ["JavaScript", "AR/VR", "Lens Studio", "3D"],
-    link: "https://www.linkedin.com/posts/evan-spiegel-8ab74034a_had-the-chance-to-spend-time-with-our-2025-ugcPost-7353849073591828481-ISRn/?utm_source=share&utm_medium=member_desktop&rcm=ACoAAEWocqAB-vq1GdYbtn4iRQmwvxl2OQZ_EBU",
-    linkLabel: "Evan Spiegel's Post",
+    tags: ["Python", "R", "Genomics", "Pipelines"],
   },
   {
-    company: "Uber",
-    role: "Software Engineer Fellow",
-    period: "December 2024 - August 2025",
-    icon: SiUber,
-    color: "text-foreground",
+    company: "Minerva University",
+    role: "Program Lead, Content Creator & Student Ambassador",
+    period: "Sep 2024 - Present",
+    icon: Users,
+    color: "text-blue-500",
     description: [
-      "Selected as 1 of 50 from 2,000+ applicants globally (top 3%) for Uber's international Career Prep Program.",
-      "Solved 50+ advanced algorithmic challenges covering graph traversal, backtracking, greedy, and dynamic programming.",
-      "Strengthened system design fundamentals combining Big-O analysis with API modeling and distributed scalability strategies.",
+      "Managed content strategy and boosted engagement by 15% across 6 channels through content automation.",
+      "Led a 3-person team across 3 time zones to deliver projects on time.",
+      "Launched a targeted content series driving 10% organic growth.",
     ],
-    tags: ["Algorithms", "System Design", "API Modeling"],
+    tags: ["Content Strategy", "Leadership", "Growth"],
   },
   {
-    company: "Kodely",
-    role: "Software Engineer Intern",
-    period: "June 2024 - January 2025",
-    icon: Code2,
-    color: "text-emerald-500 dark:text-emerald-400",
+    company: "Minerva University Psychology Lab",
+    role: "Program Lead, Research Infrastructure",
+    period: "Jun 2025 - Sept 2025",
+    icon: FlaskConical,
+    color: "text-purple-500",
     description: [
-      "Developed responsive enrichment program platform for K-12 districts using Astro, React, Tailwind CSS, and Firebase, driving a 75% increase in student engagement.",
-      "Optimized web performance via code-splitting, lazy loading, and SSR, reducing page load times by 40%.",
+      "Built automated Python pipelines across 20+ studies, reducing processing time by 80%.",
+      "Standardized workflows, reducing onboarding time by 30%.",
     ],
-    tags: ["React", "Astro", "Firebase", "Tailwind CSS"],
+    tags: ["Python", "Data Pipelines", "Research"],
   },
   {
-    company: "SMCCCD",
-    role: "Web Services Intern",
-    period: "October 2024 - May 2025",
-    icon: Code2,
-    color: "text-sky-500 dark:text-sky-400",
+    company: "Kyung Hee University Hospital",
+    role: "Research Assistant, Computational Multi-Omics Lab",
+    period: "Jan 2025 - Apr 2025",
+    icon: FlaskConical,
+    color: "text-pink-500",
     description: [
-      "Maintained and updated the district website, ensuring functionality and user accessibility across hundreds of web applications.",
-      "Developed new web pages and online forms, leveraging content management systems for efficient workflows.",
-      "Troubleshot and resolved web-related issues, supporting district-wide web applications and third-party software integration.",
+      "Conducted RNA-seq analysis using DESeq2 and Seurat.",
+      "Built reproducible genomic workflows and contributed to a manuscript.",
     ],
-    tags: ["JavaScript", "Python", "HTML/CSS", "Web Development"],
-  },
-  {
-    company: "Tessellations School",
-    role: "Software Engineer Intern",
-    period: "December 2023 - March 2024",
-    icon: Code2,
-    color: "text-violet-500 dark:text-violet-400",
-    description: [
-      "Developed a Python/Raspberry Pi network monitoring system to detect HTTP connectivity issues with real-time LED indicators via GPIO pins.",
-      "Built an automated attendance system using SikuliX image recognition and Python, integrating with existing school management systems.",
-    ],
-    tags: ["Python", "Raspberry Pi", "SikuliX", "Automation"],
+    tags: ["RNA-seq", "R", "Seurat", "DESeq2"],
   },
 ];
 
@@ -703,35 +668,7 @@ function ExperienceSection() {
   );
 }
 
-const researchItems = [
-  {
-    org: "Stanford Intelligent Systems Laboratory",
-    role: "AI Researcher",
-    period: "June 2024 - Present",
-    description: [
-      "Developed a real-time LLM-powered pilot assistant combining Retrieval Augmented Generation with aircraft state awareness, trajectory prediction, and natural language interfaces.",
-      "Implemented core AI services: runway lookup algorithm (5 nearest airports in <200ms), METAR/TAF weather parser (99% accuracy), and voice pipeline (95% transcription accuracy).",
-      "Presented results to Airbus, NASA, and U.S. Air Force Test Pilot School; system is undergoing in-flight testing.",
-    ],
-    publication: {
-      title: "Co-authored publication accepted to the European Conference on AI 2025",
-      link: "https://arxiv.org/abs/2503.16477",
-    },
-    tags: ["LLM", "RAG", "NLP", "Aviation AI"],
-  },
-  {
-    org: "Stanford Mineral-X",
-    role: "AI Researcher",
-    period: "June 2024 - July 2025",
-    description: [
-      "Developed a Python/Mayavi-based 3D subsurface visualization tool, enabling dynamic slicing and interactive volumetric rendering, improving geological analysis speed by 3x.",
-      "Implemented modularized architecture with NumPy and PyVista, optimizing pipelines to process 10M+ voxel geological datasets with <1s latency on modern GPUs.",
-      "Delivered codebase and documentation to the Mineral-X consortium, supporting studies across 5+ research teams.",
-    ],
-    tags: ["Python", "3D Visualization", "NumPy", "PyVista", "GPU Computing"],
-    github: "https://github.com/hebaalazzeh/Mineral-X-Subsurface-Vsualization-Tool",
-  },
-];
+const researchItems: any[] = [];
 
 function ResearchSection() {
   return (
@@ -972,62 +909,24 @@ function LeadershipSection() {
 
 const skillCategories = [
   {
+    title: "Programming",
+    skills: ["Python", "R", "SQL", "JavaScript", "TypeScript"],
+  },
+  {
+    title: "Web",
+    skills: ["HTML", "CSS"],
+  },
+  {
+    title: "Tools",
+    skills: ["Git", "Jira", "Asana", "Notion"],
+  },
+  {
+    title: "Product & Management",
+    skills: ["SCRUM", "MVP Development", "RICE", "MoSCoW"],
+  },
+  {
     title: "Languages",
-    skills: [
-      "Java",
-      "Python",
-      "C++",
-      "SQL",
-      "JavaScript",
-      "TypeScript",
-      "PHP",
-      "HTML/CSS",
-      "Julia",
-      "LaTeX",
-      "MatLab",
-      "LangChain",
-    ],
-  },
-  {
-    title: "Frameworks",
-    skills: [
-      "React",
-      "Node.js",
-      "Next.js",
-      "WordPress",
-      "GraphQL",
-      "Django",
-      "Flask",
-      "Express.js",
-    ],
-  },
-  {
-    title: "Developer Tools",
-    skills: [
-      "Git",
-      "GitHub",
-      "GitLab",
-      "Docker",
-      "Kubernetes",
-      "VS Code",
-      "JIRA",
-    ],
-  },
-  {
-    title: "Libraries",
-    skills: [
-      "Pandas",
-      "NumPy",
-      "Matplotlib",
-      "Mayavi",
-      "SciPy",
-      "Seaborn",
-      "OpenAI API",
-    ],
-  },
-  {
-    title: "Databases",
-    skills: ["PostgreSQL", "MySQL", "Firebase", "SQLite"],
+    skills: ["English (C2)", "Romanian", "Spanish (B2)", "German (A2)"],
   },
 ];
 
@@ -1159,88 +1058,10 @@ function EducationSection() {
 
 const projects = [
   {
-    title: "LeRAAT — Aviation AI Advisory Tool",
+    title: "Marketing Automation System",
     description:
-      "An LLM-powered real-time pilot assistant combining RAG with aircraft state awareness, trajectory prediction, and natural language interfaces. Presented to Airbus, NASA, and U.S. Air Force; undergoing in-flight testing.",
-    tags: ["Python", "LLM", "RAG", "XPlane", "OpenAI API"],
-    link: "https://github.com/sisl/LeRAAT",
-    linkLabel: "GitHub",
-  },
-  {
-    title: "Syllabus Seeker",
-    description:
-      "A modern web app helping students search, share, and access course syllabi with fuzzy search, upload/preview, and dark/light mode. Built with Next.js, TypeScript, and PostgreSQL.",
-    tags: ["Next.js", "TypeScript", "Tailwind CSS", "PostgreSQL", "Prisma"],
-    link: "https://syllabus-seeker.vercel.app/",
-    linkLabel: "Live Site",
-  },
-  {
-    title: "Mingly — Social Networking App",
-    description:
-      "Led a team of 15 to build a social networking app for spontaneous, meaningful connections. Oversaw mobile and desktop development through the full SDLC in an agile environment.",
-    tags: ["SwiftUI", "Firebase", "Azure", ".NET", "Team Lead"],
-    link: "https://github.com/Mingley-AI/mingley-mvc-website",
-    linkLabel: "GitHub",
-  },
-  {
-    title: "Crochet Of The Day Website",
-    description:
-      "A daily crochet pattern platform with user contributions, likes, accessible navigation, and community features. Full-stack with Django backend and interactive frontend.",
-    tags: ["Django", "JavaScript", "Full-Stack", "CSS", "API"],
-    link: "https://github.com/hebaalazzeh/Crochet-Of-The-Day-Website",
-    linkLabel: "GitHub",
-  },
-  {
-    title: "AI Chat With Websites",
-    description:
-      "Conversational AI interface that lets users chat with any website using web scraping, LangChain, and OpenAI embeddings. Features context-aware responses and dynamic session management.",
-    tags: ["Python", "LangChain", "OpenAI", "Streamlit", "NLP"],
-  },
-  {
-    title: "Bulldog Bistro",
-    description:
-      "A Pygame game inspired by Diner Dash where players navigate a cafeteria as a mischievous mascot, stealing burgers in a 30-second time challenge. All art created by Heba.",
-    tags: ["Python", "Pygame", "Game Dev"],
-    link: "https://github.com/hebaalazzeh/Bulldog-Bistro",
-    linkLabel: "GitHub",
-  },
-  {
-    title: "3D Geological Visualization Tool",
-    description:
-      "Interactive 3D subsurface visualization tool using Python and Mayavi, enabling dynamic slicing, camera path rendering, and volumetric analysis of 10M+ voxel geological datasets.",
-    tags: ["Python", "Mayavi", "NumPy", "PyVista"],
-    link: "https://github.com/hebaalazzeh/Mineral-X-Subsurface-Vsualization-Tool",
-    linkLabel: "GitHub",
-  },
-  {
-    title: "Computer Science Club Website",
-    description:
-      "Full-stack website featuring an AI chatbot, gallery, team section, initiatives page, and contact forms. Built for the CSM Computer Science Club.",
-    tags: ["JavaScript", "HTML/CSS", "AI Chatbot", "Full-Stack"],
-  },
-  {
-    title: "Girls Who Code Club Website",
-    description:
-      "Platform promoting diversity and inclusion in CS at College of San Mateo, featuring team profiles, events, membership signup, and contact forms with Bootstrap and Web3Forms.",
-    tags: ["HTML5", "CSS3", "JavaScript", "Bootstrap"],
-  },
-  {
-    title: "Network Connectivity Monitor",
-    description:
-      "Raspberry Pi-based system using Python to monitor HTTP connections, detect network issues, and provide real-time LED indicators for network status using GPIO pins.",
-    tags: ["Python", "Raspberry Pi", "GPIO", "Networking"],
-  },
-  {
-    title: "K-12 STEM Enrichment Platform",
-    description:
-      "Responsive enrichment program platform for K-12 districts using Astro, React, Tailwind CSS, and Firebase, driving a 75% increase in student engagement.",
-    tags: ["React", "Astro", "Firebase", "Tailwind CSS"],
-  },
-  {
-    title: "Automated Attendance System",
-    description:
-      "Automated attendance system using SikuliX image recognition and Python to streamline after-school attendance, integrating with existing school management systems.",
-    tags: ["Python", "SikuliX", "Automation"],
+      "Built automation workflows using Make.com to streamline content distribution and engagement tracking.",
+    tags: ["Automation", "Make.com", "No-code"],
   },
 ];
 
@@ -1336,7 +1157,7 @@ const recommendations = [
     title: "Founder of Kodely | Forbes 30u30",
     relationship: "Direct manager at Kodely",
     quote:
-      "I am pleased to highly recommend Heba Alazzeh for any role in operations, logistics, or project management. Having worked closely with Heba in her role as Operations Coordinator at Kodely, I have seen firsthand her exceptional ability to think outside the box, solve complex challenges, and drive efficiency in fast-paced environments.",
+      "I am pleased to highly recommend Alexia Moreanu for any role in operations, logistics, or project management. Having worked closely with Heba in her role as Operations Coordinator at Kodely, I have seen firsthand her exceptional ability to think outside the box, solve complex challenges, and drive efficiency in fast-paced environments.",
   },
   {
     name: "Michael Fariss",
@@ -1514,14 +1335,14 @@ function ContactSection() {
       </p>
 
       <div className="flex flex-wrap items-center justify-center gap-4">
-        <a href="mailto:alazzehheba@gmail.com" data-testid="link-contact-email">
+        <a href="mailto:alexia@uni.minerva.edu" data-testid="link-contact-email">
           <Button className="gap-2">
             <Mail className="w-4 h-4" />
             alazzehheba@gmail.com
           </Button>
         </a>
         <a
-          href="https://www.linkedin.com/comm/mynetwork/discovery-see-all?usecase=PEOPLE_FOLLOWS&followMember=heba-alazzeh"
+          href="https://www.linkedin.com/in/alexia-moreanu/"
           target="_blank"
           rel="noopener noreferrer"
           data-testid="link-contact-linkedin-follow"
@@ -1532,7 +1353,7 @@ function ContactSection() {
           </Button>
         </a>
         <a
-          href="https://github.com/hebaalazzeh"
+          href="https://github.com/alexia-moreanu"
           target="_blank"
           rel="noopener noreferrer"
           data-testid="link-contact-github"
@@ -1554,12 +1375,12 @@ function Footer() {
         <div className="flex items-center gap-2">
           <ArabesqueDecoration className="w-12 h-4 text-primary" />
           <span className="text-sm text-muted-foreground font-serif">
-            Heba Alazzeh
+            Alexia Moreanu
           </span>
           <ArabesqueDecoration className="w-12 h-4 text-primary transform scale-x-[-1]" />
         </div>
         <p className="text-xs text-muted-foreground">
-          &copy; {new Date().getFullYear()} Heba Alazzeh
+          &copy; {new Date().getFullYear()} Alexia Moreanu
         </p>
       </div>
     </footer>
