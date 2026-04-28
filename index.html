@@ -398,24 +398,41 @@ button { font: inherit; cursor: pointer; border: none; background: none; color: 
 .edu-coursework strong { color: rgba(232,236,241,0.7); font-weight: 500; }
 
 /* ===== EXPERIENCE TIMELINE ===== */
-.timeline { position: relative; }
+.timeline { position: relative; max-width: 64rem; margin: 0 auto; }
 .timeline-line {
     position: absolute;
-    left: 1rem;
+    left: 50%;
+    transform: translateX(-50%);
     top: 0; bottom: 0;
     width: 1px;
     background: linear-gradient(to bottom, transparent, var(--primary-dim), transparent);
 }
 .timeline-item {
     position: relative;
-    padding-left: 3.5rem;
-    padding-bottom: 3rem;
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 3rem;
+}
+.timeline-item:nth-child(odd) {
+    flex-direction: row;
+}
+.timeline-item:nth-child(even) {
+    flex-direction: row-reverse;
+}
+.timeline-half {
+    width: calc(50% - 2rem);
+}
+.timeline-dot-col {
+    width: 4rem;
+    display: flex;
+    justify-content: center;
+    flex-shrink: 0;
+    position: relative;
+    z-index: 5;
 }
 .timeline-dot {
-    position: absolute;
-    left: 0;
-    width: 2.25rem;
-    height: 2.25rem;
+    width: 2.5rem;
+    height: 2.5rem;
     border-radius: 50%;
     background: var(--bg-card);
     border: 2px solid rgba(6, 182, 212, 0.4);
@@ -423,14 +440,50 @@ button { font: inherit; cursor: pointer; border: none; background: none; color: 
     align-items: center;
     justify-content: center;
     color: var(--primary);
-    z-index: 5;
 }
-.timeline-card { padding: 1.5rem; }
+.timeline-card { padding: 1.5rem; cursor: pointer; }
+.timeline-card:hover { border-color: var(--primary-dim); }
 .timeline-header { display: flex; justify-content: space-between; align-items: flex-start; gap: 1rem; flex-wrap: wrap; }
 .timeline-company { font-family: var(--font-serif); font-size: 1.25rem; font-weight: 700; }
 .timeline-role { color: var(--primary); font-size: 0.875rem; font-weight: 500; margin-top: 0.125rem; }
 .timeline-date { font-size: 0.75rem; color: var(--fg-muted); white-space: nowrap; }
-.timeline-bullets { margin-top: 1rem; display: flex; flex-direction: column; gap: 0.5rem; }
+.timeline-summary {
+    margin-top: 0.75rem;
+    font-size: 0.875rem;
+    color: var(--fg-muted);
+    line-height: 1.6;
+}
+.timeline-expand-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.375rem;
+    margin-top: 0.75rem;
+    font-size: 0.8rem;
+    color: var(--primary);
+    cursor: pointer;
+    border: none;
+    background: none;
+    padding: 0.25rem 0;
+    transition: opacity 0.2s;
+}
+.timeline-expand-btn:hover { opacity: 0.8; }
+.timeline-expand-btn svg {
+    transition: transform 0.3s ease;
+}
+.timeline-expand-btn.expanded svg {
+    transform: rotate(180deg);
+}
+.timeline-details {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease, opacity 0.3s ease;
+    opacity: 0;
+}
+.timeline-details.open {
+    max-height: 600px;
+    opacity: 1;
+}
+.timeline-bullets { margin-top: 0.75rem; display: flex; flex-direction: column; gap: 0.5rem; }
 .timeline-bullets li {
     font-size: 0.875rem;
     color: var(--fg-muted);
@@ -448,19 +501,18 @@ button { font: inherit; cursor: pointer; border: none; background: none; color: 
 }
 .timeline-tags { display: flex; flex-wrap: wrap; gap: 0.375rem; margin-top: 1rem; }
 
-@media (min-width: 769px) {
-    .timeline-line { left: 50%; }
-    .timeline-item { padding-left: 0; padding-bottom: 3rem; display: flex; align-items: flex-start; gap: 1.5rem; }
-    .timeline-item:nth-child(even) { flex-direction: row-reverse; }
-    .timeline-item > .card { flex: 1; max-width: calc(50% - 2rem); }
-    .timeline-dot {
-        position: relative;
-        left: auto;
-        flex-shrink: 0;
+@media (max-width: 768px) {
+    .timeline-line { left: 1.25rem; transform: none; }
+    .timeline-item,
+    .timeline-item:nth-child(odd),
+    .timeline-item:nth-child(even) {
+        flex-direction: row !important;
     }
-    .timeline-spacer { flex: 1; max-width: calc(50% - 2rem); }
+    .timeline-dot-col { width: 2.5rem; }
+    .timeline-half { width: 100%; }
+    .timeline-half.spacer { display: none; }
 }
-
+        
 /* ===== RESEARCH / PROJECTS / SKILLS GRID ===== */
 .grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
 .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
@@ -740,93 +792,126 @@ button { font: inherit; cursor: pointer; border: none; background: none; color: 
         <div class="timeline">
             <div class="timeline-line"></div>
 
-            <!-- Item 1 -->
+            <!-- Item 1 — RIGHT side (odd) -->
             <div class="timeline-item fade-in">
-                <div class="timeline-dot">
-                    <svg class="icon-sm" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="m18 16 4-4-4-4"/><path d="m6 8-4 4 4 4"/><path d="m14.5 4-5 16"/></svg>
-                </div>
-                <div class="card timeline-card">
-                    <div class="timeline-header">
-                        <div>
-                            <div class="timeline-company">Buenos Aires Medical School</div>
-                            <div class="timeline-role">Program Manager, Vaccine Discovery (Research Assistant)</div>
+                <div class="timeline-half">
+                    <div class="card timeline-card" onclick="toggleDetails(this)">
+                        <div class="timeline-header">
+                            <div>
+                                <div class="timeline-company">Buenos Aires Medical School</div>
+                                <div class="timeline-role">Program Manager, Vaccine Discovery</div>
+                            </div>
+                            <span class="timeline-date">Sept 2025 – Present</span>
                         </div>
-                        <span class="timeline-date">Sept 2025 – Present</span>
-                    </div>
-                    <ul class="timeline-bullets">
-                        <li>Reduced vaccine candidate screening time by 50% by building R and Python genomic analysis scripts.</li>
-                        <li>Led a 3-person team by running weekly meetings, and set deadlines to stay on track and deliver on schedule.</li>
-                        <li>Sped up K. pneumoniae vaccine development by 25% by linking computation with wet-lab testing.</li>
-                    </ul>
-                    <div class="timeline-tags">
-                        <span class="badge-secondary badge">R</span>
-                        <span class="badge-secondary badge">Python</span>
-                        <span class="badge-secondary badge">Genomics</span>
-                        <span class="badge-secondary badge">Team Lead</span>
+                        <p class="timeline-summary">Leading computational genomics for vaccine development — reduced screening time by 50% and accelerated K. pneumoniae vaccine pipeline by 25%.</p>
+                        <button class="timeline-expand-btn" aria-label="Show details">
+                            <span>Show details</span>
+                            <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg>
+                        </button>
+                        <div class="timeline-details">
+                            <ul class="timeline-bullets">
+                                <li>Reduced vaccine candidate screening time by 50% by building R and Python genomic analysis scripts.</li>
+                                <li>Led a 3-person team by running weekly meetings, and set deadlines to stay on track and deliver on schedule.</li>
+                                <li>Sped up K. pneumoniae vaccine development by 25% by linking computation with wet-lab testing.</li>
+                            </ul>
+                            <div class="timeline-tags">
+                                <span class="badge-secondary badge">R</span>
+                                <span class="badge-secondary badge">Python</span>
+                                <span class="badge-secondary badge">Genomics</span>
+                                <span class="badge-secondary badge">Team Lead</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <div class="timeline-spacer"></div>
+                <div class="timeline-dot-col">
+                    <div class="timeline-dot">
+                        <svg class="icon-sm" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M10 2v7.527a2 2 0 0 1-.211.896L4.72 20.55a1 1 0 0 0 .9 1.45h12.76a1 1 0 0 0 .9-1.45l-5.069-10.127A2 2 0 0 1 14 9.527V2"/><path d="M8.5 2h7"/><path d="M7 16h10"/></svg>
+                    </div>
+                </div>
+                <div class="timeline-half spacer"></div>
             </div>
 
-            <!-- Item 2 -->
+            <!-- Item 2 — LEFT side (even) -->
             <div class="timeline-item fade-in">
-                <div class="timeline-dot">
-                    <svg class="icon-sm" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="m18 16 4-4-4-4"/><path d="m6 8-4 4 4 4"/><path d="m14.5 4-5 16"/></svg>
-                </div>
-                <div class="timeline-spacer"></div>
-                <div class="card timeline-card">
-                    <div class="timeline-header">
-                        <div>
-                            <div class="timeline-company">Minerva University</div>
-                            <div class="timeline-role">Program Lead, Content Creator & Student Ambassador</div>
-                        </div>
-                        <span class="timeline-date">Sept 2024 – Present</span>
+                <div class="timeline-half spacer"></div>
+                <div class="timeline-dot-col">
+                    <div class="timeline-dot">
+                        <svg class="icon-sm" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="m18 16 4-4-4-4"/><path d="m6 8-4 4 4 4"/><path d="m14.5 4-5 16"/></svg>
                     </div>
-                    <ul class="timeline-bullets">
-                        <li>Managed content strategy and boosted engagement by 15% across 6 channels through content automation.</li>
-                        <li>Led a 3-person team across 3 time zones to deliver projects on time through clear ownership and execution.</li>
-                        <li>Launched a targeted content series driving 10% organic growth, becoming highest-performing engagement.</li>
-                    </ul>
-                    <div class="timeline-tags">
-                        <span class="badge-secondary badge">Content Strategy</span>
-                        <span class="badge-secondary badge">Team Lead</span>
-                        <span class="badge-secondary badge">Automation</span>
+                </div>
+                <div class="timeline-half">
+                    <div class="card timeline-card" onclick="toggleDetails(this)">
+                        <div class="timeline-header">
+                            <div>
+                                <div class="timeline-company">Minerva University</div>
+                                <div class="timeline-role">Program Lead, Content Creator & Student Ambassador</div>
+                            </div>
+                            <span class="timeline-date">Sept 2024 – Present</span>
+                        </div>
+                        <p class="timeline-summary">Managed cross-timezone content strategy — boosted engagement by 15% across 6 channels and drove 10% organic growth with a targeted content series.</p>
+                        <button class="timeline-expand-btn" aria-label="Show details">
+                            <span>Show details</span>
+                            <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg>
+                        </button>
+                        <div class="timeline-details">
+                            <ul class="timeline-bullets">
+                                <li>Managed content strategy and boosted engagement by 15% across 6 channels through content automation.</li>
+                                <li>Led a 3-person team across 3 time zones to deliver projects on time through clear ownership and execution.</li>
+                                <li>Launched a targeted content series driving 10% organic growth, becoming highest-performing engagement.</li>
+                            </ul>
+                            <div class="timeline-tags">
+                                <span class="badge-secondary badge">Content Strategy</span>
+                                <span class="badge-secondary badge">Team Lead</span>
+                                <span class="badge-secondary badge">Automation</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
 
-            <!-- Item 3 -->
+            <!-- Item 3 — RIGHT side (odd) -->
             <div class="timeline-item fade-in">
-                <div class="timeline-dot">
-                    <svg class="icon-sm" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="m18 16 4-4-4-4"/><path d="m6 8-4 4 4 4"/><path d="m14.5 4-5 16"/></svg>
-                </div>
-                <div class="card timeline-card">
-                    <div class="timeline-header">
-                        <div>
-                            <div class="timeline-company">Minerva University Psychology Lab</div>
-                            <div class="timeline-role">Program Lead, Research Infrastructure</div>
+                <div class="timeline-half">
+                    <div class="card timeline-card" onclick="toggleDetails(this)">
+                        <div class="timeline-header">
+                            <div>
+                                <div class="timeline-company">Minerva University Psychology Lab</div>
+                                <div class="timeline-role">Program Lead, Research Infrastructure</div>
+                            </div>
+                            <span class="timeline-date">Jun 2025 – Sept 2025</span>
                         </div>
-                        <span class="timeline-date">Jun 2025 – Sept 2025</span>
-                    </div>
-                    <ul class="timeline-bullets">
-                        <li>Built the lab's technical and operational infrastructure from scratch by setting up physical research space.</li>
-                        <li>Automated study workflows in Qualtrics to standardize data collection and execution.</li>
-                        <li>Cut behavioral data processing time by 80% (5h → ~1h) by creating automated Python pipelines for feature extraction, visualization, and statistical testing across 20+ studies.</li>
-                        <li>Wrote the lab's "Data Analysis Handbook," reducing onboarding time for new researchers by ~30%.</li>
-                    </ul>
-                    <div class="timeline-tags">
-                        <span class="badge-secondary badge">Python</span>
-                        <span class="badge-secondary badge">Qualtrics</span>
-                        <span class="badge-secondary badge">Data Pipelines</span>
-                        <span class="badge-secondary badge">Documentation</span>
+                        <p class="timeline-summary">Built the lab's entire technical infrastructure from scratch — automated 20+ study pipelines and cut data processing time by 80%.</p>
+                        <button class="timeline-expand-btn" aria-label="Show details">
+                            <span>Show details</span>
+                            <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg>
+                        </button>
+                        <div class="timeline-details">
+                            <ul class="timeline-bullets">
+                                <li>Built the lab's technical and operational infrastructure from scratch by setting up physical research space.</li>
+                                <li>Automated study workflows in Qualtrics to standardize data collection and execution.</li>
+                                <li>Cut behavioral data processing time by 80% (5h → ~1h) by creating automated Python pipelines for feature extraction, visualization, and statistical testing across 20+ studies.</li>
+                                <li>Wrote the lab's "Data Analysis Handbook," reducing onboarding time for new researchers by ~30%.</li>
+                            </ul>
+                            <div class="timeline-tags">
+                                <span class="badge-secondary badge">Python</span>
+                                <span class="badge-secondary badge">Qualtrics</span>
+                                <span class="badge-secondary badge">Data Pipelines</span>
+                                <span class="badge-secondary badge">Documentation</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <div class="timeline-spacer"></div>
+                <div class="timeline-dot-col">
+                    <div class="timeline-dot">
+                        <svg class="icon-sm" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="m18 16 4-4-4-4"/><path d="m6 8-4 4 4 4"/><path d="m14.5 4-5 16"/></svg>
+                    </div>
+                </div>
+                <div class="timeline-half spacer"></div>
             </div>
         </div>
     </div>
 </section>
-
+    
 <!-- ==================== RESEARCH ==================== -->
 <section class="section fade-in" id="research">
     <div class="container">
@@ -1052,6 +1137,18 @@ orgs.forEach(name => {
     div.textContent = name;
     logoTrack.appendChild(div);
 });
+
+    // === EXPAND/COLLAPSE EXPERIENCE DETAILS ===
+function toggleDetails(cardEl) {
+    const details = cardEl.querySelector('.timeline-details');
+    const btn = cardEl.querySelector('.timeline-expand-btn');
+    const label = btn.querySelector('span');
+    const isOpen = details.classList.contains('open');
+
+    details.classList.toggle('open');
+    btn.classList.toggle('expanded');
+    label.textContent = isOpen ? 'Show details' : 'Hide details';
+}
 </script>
 
 </body>
