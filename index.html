@@ -1,0 +1,1058 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Alexia Moreanu - Program Manager & Computational Scientist</title>
+    <meta name="description" content="Portfolio of Alexia Moreanu — Minerva University, Computational Science & Natural Sciences. Program management, data science, and research." />
+    <meta property="og:title" content="Alexia Moreanu - Program Manager & Computational Scientist" />
+    <meta property="og:description" content="Minerva University BS in Computational Science. Program Manager. Data Scientist. Building impactful solutions across 7 countries." />
+    <meta property="og:type" content="website" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Inter:opsz,wght@14..32,100..900&family=JetBrains+Mono:wght@100..800&display=swap" rel="stylesheet">
+    <style>
+/* ===== CSS VARIABLES ===== */
+:root {
+    --bg: #0a0f1a;
+    --bg-card: #111827;
+    --bg-card-hover: #1a2332;
+    --fg: #e8ecf1;
+    --fg-muted: #8899aa;
+    --fg-dim: #5a6a7a;
+    --primary: #06B6D4;
+    --primary-dim: #0891b2;
+    --primary-glow: rgba(6, 182, 212, 0.15);
+    --primary-glow2: rgba(6, 182, 212, 0.08);
+    --border: #1e293b;
+    --border-light: #2a3a4a;
+    --badge-bg: #0c1929;
+    --badge-border: #164e63;
+    --font-serif: 'Playfair Display', Georgia, serif;
+    --font-sans: 'Inter', -apple-system, sans-serif;
+    --font-mono: 'JetBrains Mono', monospace;
+    --radius: 0.75rem;
+}
+
+/* ===== RESET ===== */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+    font-family: var(--font-sans);
+    background: var(--bg);
+    color: var(--fg);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+}
+a { color: inherit; text-decoration: none; }
+ul, ol { list-style: none; }
+img { max-width: 100%; display: block; }
+button { font: inherit; cursor: pointer; border: none; background: none; color: inherit; }
+
+/* ===== UTILITY ===== */
+.container { max-width: 72rem; margin: 0 auto; padding: 0 1.5rem; }
+.section { padding: 5rem 0; }
+.section-header { text-align: center; margin-bottom: 3rem; }
+.section-header h2 {
+    font-family: var(--font-serif);
+    font-size: 2.25rem;
+    font-weight: 700;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+.section-header .icon { color: var(--primary); width: 1.5rem; height: 1.5rem; }
+.section-divider {
+    width: 4rem;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--primary), transparent);
+    margin: 1rem auto 0;
+}
+.ornament {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+    color: var(--primary);
+    opacity: 0.5;
+    margin: 0 0.75rem;
+}
+.ornament .dot { width: 4px; height: 4px; border-radius: 50%; background: currentColor; }
+.ornament .line { width: 20px; height: 1px; background: currentColor; }
+
+/* ===== CARDS ===== */
+.card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+.card:hover {
+    border-color: var(--border-light);
+    box-shadow: 0 4px 24px rgba(0,0,0,0.2);
+}
+
+/* ===== BADGES ===== */
+.badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.2rem 0.6rem;
+    font-size: 0.75rem;
+    font-weight: 500;
+    border-radius: 0.375rem;
+    border: 1px solid var(--badge-border);
+    background: var(--badge-bg);
+    color: var(--primary);
+    white-space: nowrap;
+}
+.badge-secondary {
+    background: var(--bg-card);
+    border-color: var(--border);
+    color: var(--fg-muted);
+}
+
+/* ===== BUTTONS ===== */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.6rem 1.5rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    border-radius: 0.5rem;
+    transition: all 0.2s;
+}
+.btn-primary {
+    background: var(--primary);
+    color: #0a0f1a;
+    border: 1px solid var(--primary-dim);
+}
+.btn-primary:hover { filter: brightness(1.1); transform: translateY(-1px); }
+.btn-outline {
+    border: 1px solid var(--border-light);
+    color: var(--fg);
+    background: transparent;
+}
+.btn-outline:hover { border-color: var(--primary); color: var(--primary); }
+.btn-icon {
+    width: 2.25rem; height: 2.25rem;
+    display: inline-flex; align-items: center; justify-content: center;
+    border-radius: 0.5rem;
+    border: 1px solid transparent;
+    transition: all 0.2s;
+}
+.btn-icon:hover { border-color: var(--border-light); color: var(--primary); }
+
+/* ===== ANIMATIONS ===== */
+.fade-in {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+}
+.fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+@keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
+@keyframes pulse-dot { 0%, 100% { opacity: 0.3; transform: scale(1); } 50% { opacity: 0.8; transform: scale(1.3); } }
+@keyframes scroll-logos { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+@keyframes hero-fade-in { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+
+/* ===== NAV ===== */
+.nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 50;
+    transition: background 0.4s, border-color 0.4s;
+    border-bottom: 1px solid transparent;
+}
+.nav.scrolled {
+    background: rgba(10, 15, 26, 0.85);
+    backdrop-filter: blur(16px);
+    border-color: var(--border);
+}
+.nav-inner {
+    max-width: 72rem;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+    height: 4rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.nav-logo {
+    font-family: var(--font-serif);
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--primary);
+}
+.nav-links { display: flex; gap: 0.25rem; }
+.nav-links a {
+    padding: 0.5rem 0.75rem;
+    font-size: 0.875rem;
+    color: var(--fg-muted);
+    border-radius: 0.375rem;
+    transition: color 0.2s;
+}
+.nav-links a:hover { color: var(--fg); }
+.nav-actions { display: flex; align-items: center; gap: 0.5rem; }
+.nav-mobile-btn { display: none; }
+.nav-mobile-menu {
+    display: none;
+    position: absolute;
+    top: 4rem; right: 1rem;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 0.5rem 0;
+    min-width: 12rem;
+    z-index: 50;
+}
+.nav-mobile-menu.open { display: block; }
+.nav-mobile-menu a {
+    display: block;
+    padding: 0.75rem 1rem;
+    font-size: 0.875rem;
+    color: var(--fg-muted);
+    transition: color 0.2s;
+}
+.nav-mobile-menu a:hover { color: var(--fg); }
+
+@media (max-width: 768px) {
+    .nav-links { display: none; }
+    .nav-mobile-btn { display: flex; }
+}
+
+/* ===== HERO ===== */
+.hero {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+.hero-bg {
+    position: absolute;
+    inset: 0;
+    background: 
+        linear-gradient(to bottom, rgba(10,15,26,0.5) 0%, rgba(10,15,26,0.4) 40%, var(--bg) 100%),
+        url('https://images.unsplash.com/photo-1501594907352-04cda38ebc29?w=1920&q=80') center/cover no-repeat;
+}
+.hero-particles {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    pointer-events: none;
+}
+.hero-particle {
+    position: absolute;
+    border-radius: 50%;
+    background: var(--primary);
+    opacity: 0.4;
+    animation: pulse-dot 3s ease-in-out infinite;
+}
+.hero-content {
+    position: relative;
+    z-index: 10;
+    text-align: center;
+    padding: 0 1rem;
+    max-width: 50rem;
+    animation: hero-fade-in 1s ease forwards;
+}
+.hero-sparkle { color: var(--primary); margin-bottom: 1rem; }
+.hero-subtitle {
+    color: var(--primary);
+    font-family: var(--font-serif);
+    font-size: 1.125rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+    animation: hero-fade-in 0.8s ease 0.2s both;
+}
+.hero-name {
+    font-family: var(--font-serif);
+    font-size: clamp(3rem, 8vw, 6rem);
+    font-weight: 700;
+    color: #fff;
+    line-height: 1.1;
+    margin-bottom: 1.5rem;
+    animation: hero-fade-in 0.8s ease 0.4s both;
+}
+.hero-meta {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    color: rgba(255,255,255,0.7);
+    font-size: 0.875rem;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+    animation: hero-fade-in 0.8s ease 0.6s both;
+}
+.hero-meta .sep { color: var(--primary); margin: 0 0.5rem; }
+.hero-badges {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    margin-bottom: 2.5rem;
+    animation: hero-fade-in 0.8s ease 0.8s both;
+}
+.hero-actions {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    animation: hero-fade-in 0.8s ease 1s both;
+}
+.hero-scroll {
+    position: absolute;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    color: var(--primary);
+    opacity: 0.5;
+    animation: float 2s ease-in-out infinite;
+}
+
+/* ===== ABOUT ===== */
+.about-grid {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    max-width: 56rem;
+    margin: 0 auto;
+}
+.about-photo-wrap {
+    flex-shrink: 0;
+}
+.about-photo {
+    width: 14rem;
+    height: 14rem;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 4px solid rgba(6, 182, 212, 0.3);
+    box-shadow: 0 0 30px var(--primary-glow);
+}
+.about-photo-placeholder {
+    width: 14rem;
+    height: 14rem;
+    border-radius: 50%;
+    border: 4px solid rgba(6, 182, 212, 0.3);
+    box-shadow: 0 0 30px var(--primary-glow);
+    background: var(--bg-card);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--fg-muted);
+    font-size: 0.75rem;
+}
+.about-text { font-size: 1.125rem; color: rgba(232, 236, 241, 0.9); line-height: 1.7; }
+
+@media (max-width: 768px) {
+    .about-grid { flex-direction: column; text-align: center; }
+}
+
+/* ===== LOGO CAROUSEL ===== */
+.logo-carousel {
+    overflow: hidden;
+    position: relative;
+    padding: 1.5rem 0;
+}
+.logo-carousel::before, .logo-carousel::after {
+    content: '';
+    position: absolute;
+    top: 0; bottom: 0;
+    width: 4rem;
+    z-index: 10;
+    pointer-events: none;
+}
+.logo-carousel::before { left: 0; background: linear-gradient(to right, var(--bg), transparent); }
+.logo-carousel::after { right: 0; background: linear-gradient(to left, var(--bg), transparent); }
+.logo-track {
+    display: flex;
+    gap: 2rem;
+    align-items: center;
+    width: max-content;
+    animation: scroll-logos 30s linear infinite;
+}
+.logo-item {
+    flex-shrink: 0;
+    color: var(--fg-dim);
+    font-size: 0.875rem;
+    font-weight: 500;
+    white-space: nowrap;
+    padding: 0.5rem 1rem;
+}
+
+/* ===== EDUCATION ===== */
+.edu-stack { display: flex; flex-direction: column; gap: 1.5rem; }
+.edu-card { padding: 1.5rem; }
+.edu-header { display: flex; justify-content: space-between; align-items: flex-start; gap: 1rem; flex-wrap: wrap; }
+.edu-school { font-family: var(--font-serif); font-size: 1.25rem; font-weight: 700; }
+.edu-degree { color: var(--primary); font-size: 0.875rem; font-weight: 500; margin-top: 0.25rem; }
+.edu-meta { display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap; }
+.edu-date { font-size: 0.75rem; color: var(--fg-muted); white-space: nowrap; }
+.edu-coursework { margin-top: 1rem; font-size: 0.875rem; color: var(--fg-muted); line-height: 1.6; }
+.edu-coursework strong { color: rgba(232,236,241,0.7); font-weight: 500; }
+
+/* ===== EXPERIENCE TIMELINE ===== */
+.timeline { position: relative; }
+.timeline-line {
+    position: absolute;
+    left: 1rem;
+    top: 0; bottom: 0;
+    width: 1px;
+    background: linear-gradient(to bottom, transparent, var(--primary-dim), transparent);
+}
+.timeline-item {
+    position: relative;
+    padding-left: 3.5rem;
+    padding-bottom: 3rem;
+}
+.timeline-dot {
+    position: absolute;
+    left: 0;
+    width: 2.25rem;
+    height: 2.25rem;
+    border-radius: 50%;
+    background: var(--bg-card);
+    border: 2px solid rgba(6, 182, 212, 0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--primary);
+    z-index: 5;
+}
+.timeline-card { padding: 1.5rem; }
+.timeline-header { display: flex; justify-content: space-between; align-items: flex-start; gap: 1rem; flex-wrap: wrap; }
+.timeline-company { font-family: var(--font-serif); font-size: 1.25rem; font-weight: 700; }
+.timeline-role { color: var(--primary); font-size: 0.875rem; font-weight: 500; margin-top: 0.125rem; }
+.timeline-date { font-size: 0.75rem; color: var(--fg-muted); white-space: nowrap; }
+.timeline-bullets { margin-top: 1rem; display: flex; flex-direction: column; gap: 0.5rem; }
+.timeline-bullets li {
+    font-size: 0.875rem;
+    color: var(--fg-muted);
+    line-height: 1.6;
+    padding-left: 1rem;
+    position: relative;
+}
+.timeline-bullets li::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 0.55rem;
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: rgba(6, 182, 212, 0.4);
+}
+.timeline-tags { display: flex; flex-wrap: wrap; gap: 0.375rem; margin-top: 1rem; }
+
+@media (min-width: 769px) {
+    .timeline-line { left: 50%; }
+    .timeline-item { padding-left: 0; padding-bottom: 3rem; display: flex; align-items: flex-start; gap: 1.5rem; }
+    .timeline-item:nth-child(even) { flex-direction: row-reverse; }
+    .timeline-item > .card { flex: 1; max-width: calc(50% - 2rem); }
+    .timeline-dot {
+        position: relative;
+        left: auto;
+        flex-shrink: 0;
+    }
+    .timeline-spacer { flex: 1; max-width: calc(50% - 2rem); }
+}
+
+/* ===== RESEARCH / PROJECTS / SKILLS GRID ===== */
+.grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
+.grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+.grid-item { padding: 1.5rem; display: flex; flex-direction: column; height: 100%; }
+.grid-item h3 { font-family: var(--font-serif); font-size: 1.125rem; font-weight: 700; margin-bottom: 0.5rem; }
+.grid-item .sub { color: var(--primary); font-size: 0.875rem; margin-bottom: 0.25rem; }
+.grid-item .date { font-size: 0.75rem; color: var(--fg-muted); margin-bottom: 0.75rem; }
+.grid-item p, .grid-item li {
+    font-size: 0.875rem;
+    color: var(--fg-muted);
+    line-height: 1.6;
+}
+.grid-item .bullets { display: flex; flex-direction: column; gap: 0.375rem; flex: 1; }
+.grid-item .bullets li {
+    padding-left: 1rem;
+    position: relative;
+}
+.grid-item .bullets li::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 0.55rem;
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: rgba(6, 182, 212, 0.4);
+}
+.grid-item .tags { display: flex; flex-wrap: wrap; gap: 0.375rem; margin-top: 1rem; }
+.grid-item .link-row {
+    margin-top: 0.75rem;
+    display: flex;
+    align-items: center;
+    gap: 0.375rem;
+    color: var(--primary);
+    font-size: 0.875rem;
+}
+.grid-item .link-row:hover { text-decoration: underline; }
+
+/* Skills specific */
+.skill-category { font-family: var(--font-serif); font-size: 1.125rem; font-weight: 700; color: var(--primary); margin-bottom: 0.75rem; }
+.skill-tags { display: flex; flex-wrap: wrap; gap: 0.375rem; }
+
+/* ===== CERTIFICATIONS ===== */
+.cert-card { padding: 1rem 1.25rem; }
+.cert-name { font-size: 0.875rem; font-weight: 500; line-height: 1.4; }
+.cert-meta { display: flex; justify-content: space-between; align-items: center; margin-top: 0.5rem; }
+.cert-issuer { font-size: 0.75rem; color: var(--primary); }
+.cert-date { font-size: 0.75rem; color: var(--fg-muted); }
+
+/* ===== LEADERSHIP ===== */
+.lead-card { padding: 1.25rem; display: flex; flex-direction: column; height: 100%; }
+.lead-card h3 { font-family: var(--font-serif); font-size: 0.875rem; font-weight: 700; line-height: 1.4; }
+.lead-card .sub { font-size: 0.75rem; color: var(--primary); margin-top: 0.25rem; }
+.lead-card .date { font-size: 0.75rem; color: var(--fg-muted); margin-top: 0.125rem; margin-bottom: 0.5rem; }
+.lead-card p { font-size: 0.75rem; color: var(--fg-muted); line-height: 1.5; flex: 1; }
+
+/* ===== RECOMMENDATIONS ===== */
+.rec-card { padding: 2rem 2.5rem; max-width: 48rem; margin: 0 auto; }
+.rec-quote { font-size: 1rem; color: var(--fg-muted); line-height: 1.7; font-style: italic; }
+.rec-author { margin-top: 1.5rem; padding-top: 1rem; border-top: 1px solid var(--border); }
+.rec-author-name { font-family: var(--font-serif); font-weight: 700; }
+.rec-author-title { font-size: 0.875rem; color: var(--primary); margin-top: 0.25rem; }
+.rec-dots { display: flex; justify-content: center; gap: 0.5rem; margin-top: 1.5rem; }
+.rec-dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: var(--fg-dim);
+    border: none;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+.rec-dot.active { background: var(--primary); }
+
+/* ===== CONTACT ===== */
+.contact-section { text-align: center; }
+.contact-section p { color: var(--fg-muted); margin-bottom: 2rem; max-width: 28rem; margin-left: auto; margin-right: auto; }
+.contact-actions { display: flex; align-items: center; justify-content: center; gap: 1rem; flex-wrap: wrap; }
+
+/* ===== FOOTER ===== */
+.footer {
+    padding: 2rem 0;
+    border-top: 1px solid var(--border);
+    text-align: center;
+}
+.footer-name { font-family: var(--font-serif); font-size: 0.875rem; color: var(--fg-muted); }
+.footer-copy { font-size: 0.75rem; color: var(--fg-dim); margin-top: 0.5rem; }
+
+/* ===== EMPTY SECTION PLACEHOLDER ===== */
+.empty-placeholder {
+    text-align: center;
+    padding: 3rem;
+    color: var(--fg-dim);
+    font-style: italic;
+    border: 1px dashed var(--border);
+    border-radius: var(--radius);
+}
+
+/* ===== VIEW MORE BUTTON ===== */
+.view-more {
+    display: flex;
+    justify-content: center;
+    margin-top: 1.5rem;
+}
+
+/* ===== SVG ICONS ===== */
+.icon-sm { width: 1rem; height: 1rem; }
+.icon-md { width: 1.25rem; height: 1.25rem; }
+.icon-lg { width: 1.5rem; height: 1.5rem; }
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 1024px) {
+    .grid-3 { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 640px) {
+    .grid-2, .grid-3 { grid-template-columns: 1fr; }
+    .section { padding: 3.5rem 0; }
+    .section-header h2 { font-size: 1.75rem; }
+    .hero-name { font-size: 2.75rem; }
+    .ornament { display: none; }
+    .timeline-item { padding-left: 3rem; display: block !important; }
+    .timeline-item > .card { max-width: 100% !important; }
+    .timeline-spacer { display: none; }
+    .timeline-line { left: 1rem !important; }
+    .timeline-dot { position: absolute !important; left: 0 !important; }
+}
+    </style>
+</head>
+<body>
+
+<!-- ==================== NAVBAR ==================== -->
+<nav class="nav" id="navbar">
+    <div class="nav-inner">
+        <a href="#" class="nav-logo">A.M.</a>
+        <div class="nav-links" id="navLinks">
+            <a href="#about">About</a>
+            <a href="#experience">Experience</a>
+            <a href="#research">Research</a>
+            <a href="#projects">Projects</a>
+            <a href="#leadership">Leadership</a>
+            <a href="#skills">Skills</a>
+            <a href="#certifications">Certifications</a>
+            <a href="#contact">Contact</a>
+        </div>
+        <div class="nav-actions">
+            <a href="https://www.linkedin.com/in/alexia-moreanu" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+                <button class="btn-icon" aria-label="LinkedIn">
+                    <svg class="icon-md" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+                </button>
+            </a>
+            <a href="https://github.com/alexia-moreanu" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+                <button class="btn-icon" aria-label="GitHub">
+                    <svg class="icon-md" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+                </button>
+            </a>
+            <button class="btn-icon nav-mobile-btn" id="mobileMenuBtn" aria-label="Open menu">
+                <svg class="icon-md" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><line x1="4" x2="20" y1="6" y2="6"/><line x1="4" x2="20" y1="12" y2="12"/><line x1="4" x2="20" y1="18" y2="18"/></svg>
+            </button>
+        </div>
+        <div class="nav-mobile-menu" id="mobileMenu">
+            <a href="#about">About</a>
+            <a href="#experience">Experience</a>
+            <a href="#research">Research</a>
+            <a href="#projects">Projects</a>
+            <a href="#leadership">Leadership</a>
+            <a href="#skills">Skills</a>
+            <a href="#certifications">Certifications</a>
+            <a href="#contact">Contact</a>
+        </div>
+    </div>
+</nav>
+
+<!-- ==================== HERO ==================== -->
+<section class="hero" id="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-particles" id="heroParticles"></div>
+    <div class="hero-content">
+        <div class="hero-sparkle">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z"/><path d="M20 3v4"/><path d="M22 5h-4"/><path d="M4 17v2"/><path d="M5 18H3"/></svg>
+        </div>
+        <p class="hero-subtitle">Program Manager & Computational Scientist</p>
+        <h1 class="hero-name">Alexia Moreanu</h1>
+        <div class="hero-meta">
+            <svg class="icon-sm" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21.42 10.922a1 1 0 0 0-.019-1.838L12.83 5.18a2 2 0 0 0-1.66 0L2.6 9.08a1 1 0 0 0 0 1.832l8.57 3.908a2 2 0 0 0 1.66 0z"/><path d="M22 10v6"/><path d="M6 12.5V16a6 3 0 0 0 12 0v-3.5"/></svg>
+            <span>Minerva University</span>
+            <span class="sep">|</span>
+            <svg class="icon-sm" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"/><circle cx="12" cy="10" r="3"/></svg>
+            <span>San Francisco, CA</span>
+        </div>
+        <div class="hero-badges">
+            <span class="badge" style="backdrop-filter:blur(4px)">Minerva University</span>
+            <span class="badge" style="backdrop-filter:blur(4px)">Buenos Aires Medical School</span>
+            <span class="badge" style="backdrop-filter:blur(4px)">CodePath</span>
+        </div>
+        <div class="hero-actions">
+            <a href="#experience" class="btn btn-primary">
+                <svg class="icon-sm" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                Explore My Work
+            </a>
+            <a href="#contact" class="btn btn-outline" style="backdrop-filter:blur(4px)">Get in Touch</a>
+        </div>
+    </div>
+    <div class="hero-scroll">
+        <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg>
+    </div>
+</section>
+
+<!-- ==================== ABOUT ==================== -->
+<section class="section fade-in" id="about">
+    <div class="container">
+        <div class="section-header">
+            <span class="ornament"><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="line"></span></span>
+            <h2><svg class="icon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 7v14"/><path d="M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z"/></svg> About Me</h2>
+            <span class="ornament"><span class="line"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span></span>
+            <div class="section-divider"></div>
+        </div>
+        <div class="about-grid">
+            <div class="about-photo-wrap">
+                <!-- Replace src with your photo -->
+                <div class="about-photo-placeholder">Upload your<br>photo here</div>
+            </div>
+            <div>
+                <p class="about-text">
+                    Hi, my name is Alexia, and I am a Computational Science student at Minerva University, specializing in Data Science & Statistics and Natural Sciences. I am passionate about program management, building data-driven solutions, and bridging computation with real-world research. Studying across 7 countries has shaped my adaptability and cross-cultural collaboration skills. I am driven by a desire to create impactful technology and lead teams that deliver meaningful results.
+                </p>
+            </div>
+        </div>
+        <!-- Logo carousel -->
+        <div style="margin-top:3rem">
+            <p style="text-align:center;font-size:0.75rem;color:var(--fg-dim);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:1rem">Organizations & Companies</p>
+            <div class="logo-carousel">
+                <div class="logo-track" id="logoTrack">
+                    <!-- Duplicated for infinite scroll -->
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ==================== EDUCATION ==================== -->
+<section class="section fade-in" id="education">
+    <div class="container">
+        <div class="section-header">
+            <span class="ornament"><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="line"></span></span>
+            <h2><svg class="icon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21.42 10.922a1 1 0 0 0-.019-1.838L12.83 5.18a2 2 0 0 0-1.66 0L2.6 9.08a1 1 0 0 0 0 1.832l8.57 3.908a2 2 0 0 0 1.66 0z"/><path d="M22 10v6"/><path d="M6 12.5V16a6 3 0 0 0 12 0v-3.5"/></svg> Education</h2>
+            <span class="ornament"><span class="line"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span></span>
+            <div class="section-divider"></div>
+        </div>
+        <div class="edu-stack">
+            <div class="card edu-card">
+                <div class="edu-header">
+                    <div>
+                        <div class="edu-school">Minerva University</div>
+                        <div class="edu-degree">Bachelor in Computational Science (Data Science & Statistics) & Natural Sciences</div>
+                    </div>
+                    <div class="edu-meta">
+                        <span class="badge">~3.6% acceptance rate</span>
+                        <span class="edu-date">Sept 2023 – May 2027</span>
+                    </div>
+                </div>
+            </div>
+            <div class="card edu-card">
+                <p class="edu-coursework">
+                    <strong>📖 Relevant Coursework:</strong> Data Structures and Algorithms, Single/Multivariable Calculus, Probability and Statistics.
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ==================== EXPERIENCE ==================== -->
+<section class="section fade-in" id="experience">
+    <div class="container">
+        <div class="section-header">
+            <span class="ornament"><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="line"></span></span>
+            <h2><svg class="icon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M16 20V4a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/><rect width="20" height="14" x="2" y="6" rx="2"/></svg> Experience</h2>
+            <span class="ornament"><span class="line"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span></span>
+            <div class="section-divider"></div>
+        </div>
+        <div class="timeline">
+            <div class="timeline-line"></div>
+
+            <!-- Item 1 -->
+            <div class="timeline-item fade-in">
+                <div class="timeline-dot">
+                    <svg class="icon-sm" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="m18 16 4-4-4-4"/><path d="m6 8-4 4 4 4"/><path d="m14.5 4-5 16"/></svg>
+                </div>
+                <div class="card timeline-card">
+                    <div class="timeline-header">
+                        <div>
+                            <div class="timeline-company">Buenos Aires Medical School</div>
+                            <div class="timeline-role">Program Manager, Vaccine Discovery (Research Assistant)</div>
+                        </div>
+                        <span class="timeline-date">Sept 2025 – Present</span>
+                    </div>
+                    <ul class="timeline-bullets">
+                        <li>Reduced vaccine candidate screening time by 50% by building R and Python genomic analysis scripts.</li>
+                        <li>Led a 3-person team by running weekly meetings, and set deadlines to stay on track and deliver on schedule.</li>
+                        <li>Sped up K. pneumoniae vaccine development by 25% by linking computation with wet-lab testing.</li>
+                    </ul>
+                    <div class="timeline-tags">
+                        <span class="badge-secondary badge">R</span>
+                        <span class="badge-secondary badge">Python</span>
+                        <span class="badge-secondary badge">Genomics</span>
+                        <span class="badge-secondary badge">Team Lead</span>
+                    </div>
+                </div>
+                <div class="timeline-spacer"></div>
+            </div>
+
+            <!-- Item 2 -->
+            <div class="timeline-item fade-in">
+                <div class="timeline-dot">
+                    <svg class="icon-sm" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="m18 16 4-4-4-4"/><path d="m6 8-4 4 4 4"/><path d="m14.5 4-5 16"/></svg>
+                </div>
+                <div class="timeline-spacer"></div>
+                <div class="card timeline-card">
+                    <div class="timeline-header">
+                        <div>
+                            <div class="timeline-company">Minerva University</div>
+                            <div class="timeline-role">Program Lead, Content Creator & Student Ambassador</div>
+                        </div>
+                        <span class="timeline-date">Sept 2024 – Present</span>
+                    </div>
+                    <ul class="timeline-bullets">
+                        <li>Managed content strategy and boosted engagement by 15% across 6 channels through content automation.</li>
+                        <li>Led a 3-person team across 3 time zones to deliver projects on time through clear ownership and execution.</li>
+                        <li>Launched a targeted content series driving 10% organic growth, becoming highest-performing engagement.</li>
+                    </ul>
+                    <div class="timeline-tags">
+                        <span class="badge-secondary badge">Content Strategy</span>
+                        <span class="badge-secondary badge">Team Lead</span>
+                        <span class="badge-secondary badge">Automation</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Item 3 -->
+            <div class="timeline-item fade-in">
+                <div class="timeline-dot">
+                    <svg class="icon-sm" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="m18 16 4-4-4-4"/><path d="m6 8-4 4 4 4"/><path d="m14.5 4-5 16"/></svg>
+                </div>
+                <div class="card timeline-card">
+                    <div class="timeline-header">
+                        <div>
+                            <div class="timeline-company">Minerva University Psychology Lab</div>
+                            <div class="timeline-role">Program Lead, Research Infrastructure</div>
+                        </div>
+                        <span class="timeline-date">Jun 2025 – Sept 2025</span>
+                    </div>
+                    <ul class="timeline-bullets">
+                        <li>Built the lab's technical and operational infrastructure from scratch by setting up physical research space.</li>
+                        <li>Automated study workflows in Qualtrics to standardize data collection and execution.</li>
+                        <li>Cut behavioral data processing time by 80% (5h → ~1h) by creating automated Python pipelines for feature extraction, visualization, and statistical testing across 20+ studies.</li>
+                        <li>Wrote the lab's "Data Analysis Handbook," reducing onboarding time for new researchers by ~30%.</li>
+                    </ul>
+                    <div class="timeline-tags">
+                        <span class="badge-secondary badge">Python</span>
+                        <span class="badge-secondary badge">Qualtrics</span>
+                        <span class="badge-secondary badge">Data Pipelines</span>
+                        <span class="badge-secondary badge">Documentation</span>
+                    </div>
+                </div>
+                <div class="timeline-spacer"></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ==================== RESEARCH ==================== -->
+<section class="section fade-in" id="research">
+    <div class="container">
+        <div class="section-header">
+            <span class="ornament"><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="line"></span></span>
+            <h2><svg class="icon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M10 2v7.527a2 2 0 0 1-.211.896L4.72 20.55a1 1 0 0 0 .9 1.45h12.76a1 1 0 0 0 .9-1.45l-5.069-10.127A2 2 0 0 1 14 9.527V2"/><path d="M8.5 2h7"/><path d="M7 16h10"/></svg> Research & Publications</h2>
+            <span class="ornament"><span class="line"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span></span>
+            <div class="section-divider"></div>
+        </div>
+        <div class="empty-placeholder">Coming soon — check back for research publications and details.</div>
+    </div>
+</section>
+
+<!-- ==================== PROJECTS ==================== -->
+<section class="section fade-in" id="projects">
+    <div class="container">
+        <div class="section-header">
+            <span class="ornament"><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="line"></span></span>
+            <h2><svg class="icon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M15 14c.2-1 .7-1.7 1.5-2.5 1-.9 1.5-2.2 1.5-3.5A6 6 0 0 0 6 8c0 1 .2 2.2 1.5 3.5.7.7 1.3 1.5 1.5 2.5"/><path d="M9 18h6"/><path d="M10 22h4"/></svg> Projects</h2>
+            <span class="ornament"><span class="line"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span></span>
+            <div class="section-divider"></div>
+        </div>
+        <div class="empty-placeholder">Coming soon — projects will be added here.</div>
+    </div>
+</section>
+
+<!-- ==================== LEADERSHIP ==================== -->
+<section class="section fade-in" id="leadership">
+    <div class="container">
+        <div class="section-header">
+            <span class="ornament"><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="line"></span></span>
+            <h2><svg class="icon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg> Leadership & Involvement</h2>
+            <span class="ornament"><span class="line"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span></span>
+            <div class="section-divider"></div>
+        </div>
+        <div class="empty-placeholder">Coming soon — leadership roles and extracurriculars will be listed here.</div>
+    </div>
+</section>
+
+<!-- ==================== SKILLS ==================== -->
+<section class="section fade-in" id="skills">
+    <div class="container">
+        <div class="section-header">
+            <span class="ornament"><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="line"></span></span>
+            <h2><svg class="icon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="m18 16 4-4-4-4"/><path d="m6 8-4 4 4 4"/><path d="m14.5 4-5 16"/></svg> Technical Skills</h2>
+            <span class="ornament"><span class="line"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span></span>
+            <div class="section-divider"></div>
+        </div>
+        <div class="grid-3">
+            <div class="card grid-item">
+                <div class="skill-category">Programming Languages</div>
+                <div class="skill-tags">
+                    <span class="badge-secondary badge">Python</span>
+                    <span class="badge-secondary badge">R</span>
+                    <span class="badge-secondary badge">SQL</span>
+                    <span class="badge-secondary badge">JavaScript</span>
+                    <span class="badge-secondary badge">TypeScript</span>
+                    <span class="badge-secondary badge">HTML/CSS</span>
+                    <span class="badge-secondary badge">LaTeX</span>
+                </div>
+            </div>
+            <div class="card grid-item">
+                <div class="skill-category">Software Engineering</div>
+                <div class="skill-tags">
+                    <span class="badge-secondary badge">Data Structures</span>
+                    <span class="badge-secondary badge">Algorithms</span>
+                    <span class="badge-secondary badge">OOP</span>
+                    <span class="badge-secondary badge">Version Control (Git)</span>
+                </div>
+            </div>
+            <div class="card grid-item">
+                <div class="skill-category">Program & Product Management</div>
+                <div class="skill-tags">
+                    <span class="badge-secondary badge">Jira</span>
+                    <span class="badge-secondary badge">Asana</span>
+                    <span class="badge-secondary badge">Notion</span>
+                    <span class="badge-secondary badge">SCRUM (Agile)</span>
+                    <span class="badge-secondary badge">MVP Development</span>
+                    <span class="badge-secondary badge">MoSCoW</span>
+                    <span class="badge-secondary badge">RICE</span>
+                    <span class="badge-secondary badge">Stakeholder Mgmt</span>
+                    <span class="badge-secondary badge">Product Strategy</span>
+                </div>
+            </div>
+            <div class="card grid-item">
+                <div class="skill-category">Languages</div>
+                <div class="skill-tags">
+                    <span class="badge-secondary badge">English (C2)</span>
+                    <span class="badge-secondary badge">Romanian (Native)</span>
+                    <span class="badge-secondary badge">Spanish (B2)</span>
+                    <span class="badge-secondary badge">German (A2)</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ==================== CERTIFICATIONS ==================== -->
+<section class="section fade-in" id="certifications">
+    <div class="container">
+        <div class="section-header">
+            <span class="ornament"><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="line"></span></span>
+            <h2><svg class="icon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="m15.477 12.89 1.515 8.526a.5.5 0 0 1-.81.47l-3.58-2.687a1 1 0 0 0-1.197 0l-3.586 2.686a.5.5 0 0 1-.81-.469l1.514-8.526"/><circle cx="12" cy="8" r="6"/></svg> Certifications</h2>
+            <span class="ornament"><span class="line"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span></span>
+            <div class="section-divider"></div>
+        </div>
+        <div class="grid-3">
+            <div class="card cert-card">
+                <div class="cert-name">CodePath TIP 101</div>
+                <div class="cert-meta">
+                    <span class="cert-issuer">CodePath</span>
+                    <span class="cert-date"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ==================== RECOMMENDATIONS ==================== -->
+<section class="section fade-in" id="recommendations">
+    <div class="container">
+        <div class="section-header">
+            <span class="ornament"><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="line"></span></span>
+            <h2><svg class="icon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/><path d="M8 12a2 2 0 0 0 2-2V8H8"/><path d="M14 12a2 2 0 0 0 2-2V8h-2"/></svg> Recommendations</h2>
+            <span class="ornament"><span class="line"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span></span>
+            <div class="section-divider"></div>
+        </div>
+        <div class="empty-placeholder">Coming soon — recommendations will appear here.</div>
+    </div>
+</section>
+
+<!-- ==================== CONTACT ==================== -->
+<section class="section fade-in contact-section" id="contact">
+    <div class="container">
+        <div class="section-header">
+            <span class="ornament"><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="line"></span></span>
+            <h2><svg class="icon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg> Get in Touch</h2>
+            <span class="ornament"><span class="line"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span></span>
+            <div class="section-divider"></div>
+        </div>
+        <p>I'm always open to discussing new opportunities, collaborations, or just connecting. Feel free to reach out!</p>
+        <div class="contact-actions">
+            <a href="mailto:alexia@uni.minerva.edu" class="btn btn-primary">
+                <svg class="icon-sm" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+                alexia@uni.minerva.edu
+            </a>
+            <a href="https://www.linkedin.com/in/alexia-moreanu" target="_blank" rel="noopener noreferrer" class="btn btn-outline">
+                <svg class="icon-sm" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+                Follow on LinkedIn
+            </a>
+            <a href="https://github.com/alexia-moreanu" target="_blank" rel="noopener noreferrer" class="btn btn-outline">
+                <svg class="icon-sm" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+                GitHub
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- ==================== FOOTER ==================== -->
+<footer class="footer">
+    <div class="container">
+        <div class="footer-name">Alexia Moreanu</div>
+        <div class="footer-copy">&copy; 2026 Alexia Moreanu</div>
+    </div>
+</footer>
+
+<!-- ==================== JAVASCRIPT ==================== -->
+<script>
+// === NAV SCROLL ===
+const nav = document.getElementById('navbar');
+window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 50);
+});
+
+// === MOBILE MENU ===
+const mobileBtn = document.getElementById('mobileMenuBtn');
+const mobileMenu = document.getElementById('mobileMenu');
+mobileBtn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    mobileMenu.classList.toggle('open');
+});
+document.addEventListener('click', () => mobileMenu.classList.remove('open'));
+mobileMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => mobileMenu.classList.remove('open')));
+
+// === SCROLL FADE-IN ===
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+        }
+    });
+}, { threshold: 0.1, rootMargin: '-60px' });
+document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+// === HERO PARTICLES ===
+const particlesEl = document.getElementById('heroParticles');
+for (let i = 0; i < 40; i++) {
+    const p = document.createElement('div');
+    p.className = 'hero-particle';
+    const size = Math.random() * 2 + 1;
+    p.style.cssText = `
+        left: ${Math.random() * 100}%;
+        top: ${Math.random() * 100}%;
+        width: ${size}px;
+        height: ${size}px;
+        animation-delay: ${Math.random() * 5}s;
+        animation-duration: ${Math.random() * 3 + 2}s;
+    `;
+    particlesEl.appendChild(p);
+}
+
+// === LOGO CAROUSEL ===
+const orgs = [
+    'Minerva University', 'Buenos Aires Medical School', 'CodePath',
+    'Minerva Psych Lab', 'San Francisco', 'Buenos Aires',
+    'Minerva University', 'Buenos Aires Medical School', 'CodePath',
+    'Minerva Psych Lab', 'San Francisco', 'Buenos Aires'
+];
+const logoTrack = document.getElementById('logoTrack');
+orgs.forEach(name => {
+    const div = document.createElement('div');
+    div.className = 'logo-item';
+    div.textContent = name;
+    logoTrack.appendChild(div);
+});
+</script>
+
+</body>
+</html>
