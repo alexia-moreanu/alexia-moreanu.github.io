@@ -413,14 +413,19 @@ button { font: inherit; cursor: pointer; border: none; background: none; color: 
     align-items: flex-start;
     margin-bottom: 3rem;
 }
-.timeline-item:nth-child(odd) {
+/* Odd items: card on LEFT, dot in center, empty on RIGHT */
+.timeline-item.item-left {
     flex-direction: row;
 }
-.timeline-item:nth-child(even) {
-    flex-direction: row-reverse;
+/* Even items: empty on LEFT, dot in center, card on RIGHT */
+.timeline-item.item-right {
+    flex-direction: row;
 }
 .timeline-half {
     width: calc(50% - 2rem);
+}
+.timeline-half.spacer {
+    pointer-events: none;
 }
 .timeline-dot-col {
     width: 4rem;
@@ -443,16 +448,17 @@ button { font: inherit; cursor: pointer; border: none; background: none; color: 
 }
 .timeline-card { padding: 1.5rem; cursor: pointer; }
 .timeline-card:hover { border-color: var(--primary-dim); }
-.timeline-header { display: flex; justify-content: space-between; align-items: flex-start; gap: 1rem; flex-wrap: wrap; }
+.timeline-header-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+}
 .timeline-company { font-family: var(--font-serif); font-size: 1.25rem; font-weight: 700; }
 .timeline-role { color: var(--primary); font-size: 0.875rem; font-weight: 500; margin-top: 0.125rem; }
-.timeline-date { font-size: 0.75rem; color: var(--fg-muted); white-space: nowrap; }
-.timeline-summary {
-    margin-top: 0.75rem;
-    font-size: 0.875rem;
-    color: var(--fg-muted);
-    line-height: 1.6;
-}
+.timeline-date { font-size: 0.75rem; color: var(--fg-muted); white-space: nowrap; margin-top: 0.25rem; }
+.timeline-tags { display: flex; flex-wrap: wrap; gap: 0.375rem; margin-top: 0.75rem; }
 .timeline-expand-btn {
     display: inline-flex;
     align-items: center;
@@ -499,16 +505,20 @@ button { font: inherit; cursor: pointer; border: none; background: none; color: 
     border-radius: 50%;
     background: rgba(6, 182, 212, 0.4);
 }
-.timeline-tags { display: flex; flex-wrap: wrap; gap: 0.375rem; margin-top: 1rem; }
 
 @media (max-width: 768px) {
     .timeline-line { left: 1.25rem; transform: none; }
-    .timeline-item,
-    .timeline-item:nth-child(odd),
-    .timeline-item:nth-child(even) {
+    .timeline-item.item-left,
+    .timeline-item.item-right {
         flex-direction: row !important;
     }
-    .timeline-dot-col { width: 2.5rem; }
+    .timeline-item.item-right .timeline-half.spacer { display: none; }
+    .timeline-item.item-left .timeline-half.spacer { display: none; }
+    /* On mobile: dot - card in a row, always */
+    .timeline-item.item-right {
+        flex-direction: row !important;
+    }
+    .timeline-dot-col { width: 2.5rem; order: -1; }
     .timeline-half { width: 100%; }
     .timeline-half.spacer { display: none; }
 }
@@ -792,18 +802,19 @@ button { font: inherit; cursor: pointer; border: none; background: none; color: 
         <div class="timeline">
             <div class="timeline-line"></div>
 
-            <!-- Item 1 — RIGHT side (odd) -->
-            <div class="timeline-item fade-in">
+            <!-- Item 1 — card on LEFT -->
+            <div class="timeline-item item-left fade-in">
                 <div class="timeline-half">
                     <div class="card timeline-card" onclick="toggleDetails(this)">
-                        <div class="timeline-header">
-                            <div>
-                                <div class="timeline-company">Buenos Aires Medical School</div>
-                                <div class="timeline-role">Program Manager, Vaccine Discovery</div>
-                            </div>
-                            <span class="timeline-date">Sept 2025 – Present</span>
+                        <div class="timeline-company">Buenos Aires Medical School</div>
+                        <div class="timeline-role">Program Manager, Vaccine Discovery</div>
+                        <div class="timeline-date">Sept 2025 – Present</div>
+                        <div class="timeline-tags">
+                            <span class="badge-secondary badge">R</span>
+                            <span class="badge-secondary badge">Python</span>
+                            <span class="badge-secondary badge">Genomics</span>
+                            <span class="badge-secondary badge">Team Lead</span>
                         </div>
-                        <p class="timeline-summary">Leading computational genomics for vaccine development — reduced screening time by 50% and accelerated K. pneumoniae vaccine pipeline by 25%.</p>
                         <button class="timeline-expand-btn" aria-label="Show details">
                             <span>Show details</span>
                             <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg>
@@ -814,12 +825,6 @@ button { font: inherit; cursor: pointer; border: none; background: none; color: 
                                 <li>Led a 3-person team by running weekly meetings, and set deadlines to stay on track and deliver on schedule.</li>
                                 <li>Sped up K. pneumoniae vaccine development by 25% by linking computation with wet-lab testing.</li>
                             </ul>
-                            <div class="timeline-tags">
-                                <span class="badge-secondary badge">R</span>
-                                <span class="badge-secondary badge">Python</span>
-                                <span class="badge-secondary badge">Genomics</span>
-                                <span class="badge-secondary badge">Team Lead</span>
-                            </div>
                         </div>
                     </div>
                 </div>
@@ -831,8 +836,8 @@ button { font: inherit; cursor: pointer; border: none; background: none; color: 
                 <div class="timeline-half spacer"></div>
             </div>
 
-            <!-- Item 2 — LEFT side (even) -->
-            <div class="timeline-item fade-in">
+            <!-- Item 2 — card on RIGHT -->
+            <div class="timeline-item item-right fade-in">
                 <div class="timeline-half spacer"></div>
                 <div class="timeline-dot-col">
                     <div class="timeline-dot">
@@ -841,14 +846,14 @@ button { font: inherit; cursor: pointer; border: none; background: none; color: 
                 </div>
                 <div class="timeline-half">
                     <div class="card timeline-card" onclick="toggleDetails(this)">
-                        <div class="timeline-header">
-                            <div>
-                                <div class="timeline-company">Minerva University</div>
-                                <div class="timeline-role">Program Lead, Content Creator & Student Ambassador</div>
-                            </div>
-                            <span class="timeline-date">Sept 2024 – Present</span>
+                        <div class="timeline-company">Minerva University</div>
+                        <div class="timeline-role">Program Lead, Content Creator & Student Ambassador</div>
+                        <div class="timeline-date">Sept 2024 – Present</div>
+                        <div class="timeline-tags">
+                            <span class="badge-secondary badge">Content Strategy</span>
+                            <span class="badge-secondary badge">Team Lead</span>
+                            <span class="badge-secondary badge">Automation</span>
                         </div>
-                        <p class="timeline-summary">Managed cross-timezone content strategy — boosted engagement by 15% across 6 channels and drove 10% organic growth with a targeted content series.</p>
                         <button class="timeline-expand-btn" aria-label="Show details">
                             <span>Show details</span>
                             <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg>
@@ -859,28 +864,24 @@ button { font: inherit; cursor: pointer; border: none; background: none; color: 
                                 <li>Led a 3-person team across 3 time zones to deliver projects on time through clear ownership and execution.</li>
                                 <li>Launched a targeted content series driving 10% organic growth, becoming highest-performing engagement.</li>
                             </ul>
-                            <div class="timeline-tags">
-                                <span class="badge-secondary badge">Content Strategy</span>
-                                <span class="badge-secondary badge">Team Lead</span>
-                                <span class="badge-secondary badge">Automation</span>
-                            </div>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <!-- Item 3 — RIGHT side (odd) -->
-            <div class="timeline-item fade-in">
+            <!-- Item 3 — card on LEFT -->
+            <div class="timeline-item item-left fade-in">
                 <div class="timeline-half">
                     <div class="card timeline-card" onclick="toggleDetails(this)">
-                        <div class="timeline-header">
-                            <div>
-                                <div class="timeline-company">Minerva University Psychology Lab</div>
-                                <div class="timeline-role">Program Lead, Research Infrastructure</div>
-                            </div>
-                            <span class="timeline-date">Jun 2025 – Sept 2025</span>
+                        <div class="timeline-company">Minerva University Psychology Lab</div>
+                        <div class="timeline-role">Program Lead, Research Infrastructure</div>
+                        <div class="timeline-date">Jun 2025 – Sept 2025</div>
+                        <div class="timeline-tags">
+                            <span class="badge-secondary badge">Python</span>
+                            <span class="badge-secondary badge">Qualtrics</span>
+                            <span class="badge-secondary badge">Data Pipelines</span>
+                            <span class="badge-secondary badge">Documentation</span>
                         </div>
-                        <p class="timeline-summary">Built the lab's entire technical infrastructure from scratch — automated 20+ study pipelines and cut data processing time by 80%.</p>
                         <button class="timeline-expand-btn" aria-label="Show details">
                             <span>Show details</span>
                             <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg>
@@ -892,12 +893,6 @@ button { font: inherit; cursor: pointer; border: none; background: none; color: 
                                 <li>Cut behavioral data processing time by 80% (5h → ~1h) by creating automated Python pipelines for feature extraction, visualization, and statistical testing across 20+ studies.</li>
                                 <li>Wrote the lab's "Data Analysis Handbook," reducing onboarding time for new researchers by ~30%.</li>
                             </ul>
-                            <div class="timeline-tags">
-                                <span class="badge-secondary badge">Python</span>
-                                <span class="badge-secondary badge">Qualtrics</span>
-                                <span class="badge-secondary badge">Data Pipelines</span>
-                                <span class="badge-secondary badge">Documentation</span>
-                            </div>
                         </div>
                     </div>
                 </div>
@@ -1138,7 +1133,7 @@ orgs.forEach(name => {
     logoTrack.appendChild(div);
 });
 
-    // === EXPAND/COLLAPSE EXPERIENCE DETAILS ===
+   // === EXPAND/COLLAPSE EXPERIENCE DETAILS ===
 function toggleDetails(cardEl) {
     const details = cardEl.querySelector('.timeline-details');
     const btn = cardEl.querySelector('.timeline-expand-btn');
