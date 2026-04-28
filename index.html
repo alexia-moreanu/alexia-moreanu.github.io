@@ -235,14 +235,35 @@ button { font: inherit; cursor: pointer; border: none; background: none; color: 
     position: absolute;
     inset: 0;
     background: 
-        linear-gradient(to bottom, rgba(10,15,26,0.5) 0%, rgba(10,15,26,0.4) 40%, var(--bg) 100%),
         url('https://images.unsplash.com/photo-1501594907352-04cda38ebc29?w=1920&q=80') center/cover no-repeat;
+}
+/* Dark overlay so text is always readable */
+.hero-bg::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        to bottom,
+        rgba(6, 8, 16, 0.65) 0%,
+        rgba(6, 8, 16, 0.55) 30%,
+        rgba(6, 8, 16, 0.70) 60%,
+        var(--bg) 100%
+    );
+}
+/* Subtle texture overlay */
+.hero-bg::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    background: radial-gradient(ellipse at 50% 40%, rgba(6,182,212,0.08) 0%, transparent 60%);
 }
 .hero-particles {
     position: absolute;
     inset: 0;
     overflow: hidden;
     pointer-events: none;
+    z-index: 2;
 }
 .hero-particle {
     position: absolute;
@@ -255,19 +276,27 @@ button { font: inherit; cursor: pointer; border: none; background: none; color: 
     position: relative;
     z-index: 10;
     text-align: center;
-    padding: 0 1rem;
+    padding: 0 1.5rem;
     max-width: 50rem;
     animation: hero-fade-in 1s ease forwards;
 }
-.hero-sparkle { color: var(--primary); margin-bottom: 1rem; }
+.hero-sparkle { color: var(--primary); margin-bottom: 1.5rem; filter: drop-shadow(0 0 8px rgba(6,182,212,0.5)); }
 .hero-subtitle {
-    color: var(--primary);
-    font-family: var(--font-serif);
-    font-size: 1.125rem;
-    letter-spacing: 0.15em;
+    color: #ffffff;
+    font-family: var(--font-sans);
+    font-size: 0.875rem;
+    font-weight: 600;
+    letter-spacing: 0.25em;
     text-transform: uppercase;
-    margin-bottom: 1rem;
+    margin-bottom: 1.25rem;
     animation: hero-fade-in 0.8s ease 0.2s both;
+    text-shadow: 0 2px 20px rgba(0,0,0,0.5);
+    background: linear-gradient(90deg, rgba(6,182,212,0.15), rgba(6,182,212,0.08), rgba(6,182,212,0.15));
+    padding: 0.5rem 1.5rem;
+    border-radius: 100px;
+    border: 1px solid rgba(6,182,212,0.25);
+    display: inline-block;
+    backdrop-filter: blur(8px);
 }
 .hero-name {
     font-family: var(--font-serif);
@@ -277,19 +306,23 @@ button { font: inherit; cursor: pointer; border: none; background: none; color: 
     line-height: 1.1;
     margin-bottom: 1.5rem;
     animation: hero-fade-in 0.8s ease 0.4s both;
+    text-shadow: 0 4px 30px rgba(0,0,0,0.5);
 }
 .hero-meta {
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 0.5rem;
-    color: rgba(255,255,255,0.7);
-    font-size: 0.875rem;
+    color: rgba(255,255,255,0.85);
+    font-size: 0.9rem;
+    font-weight: 400;
     margin-bottom: 2rem;
     flex-wrap: wrap;
     animation: hero-fade-in 0.8s ease 0.6s both;
+    text-shadow: 0 1px 10px rgba(0,0,0,0.4);
 }
-.hero-meta .sep { color: var(--primary); margin: 0 0.5rem; }
+.hero-meta svg { opacity: 0.7; }
+.hero-meta .sep { color: var(--primary); margin: 0 0.5rem; font-weight: 300; }
 .hero-badges {
     display: flex;
     align-items: center;
@@ -299,6 +332,15 @@ button { font: inherit; cursor: pointer; border: none; background: none; color: 
     margin-bottom: 2.5rem;
     animation: hero-fade-in 0.8s ease 0.8s both;
 }
+.hero-badges .badge {
+    backdrop-filter: blur(12px);
+    background: rgba(6, 182, 212, 0.1);
+    border-color: rgba(6, 182, 212, 0.35);
+    color: #fff;
+    font-weight: 500;
+    padding: 0.3rem 0.85rem;
+    font-size: 0.8rem;
+}
 .hero-actions {
     display: flex;
     align-items: center;
@@ -306,13 +348,29 @@ button { font: inherit; cursor: pointer; border: none; background: none; color: 
     gap: 1rem;
     animation: hero-fade-in 0.8s ease 1s both;
 }
+.hero-actions .btn-primary {
+    font-weight: 600;
+    padding: 0.7rem 1.75rem;
+    box-shadow: 0 4px 20px rgba(6, 182, 212, 0.3);
+}
+.hero-actions .btn-outline {
+    backdrop-filter: blur(8px);
+    border-color: rgba(255,255,255,0.25);
+    color: #fff;
+    font-weight: 500;
+    padding: 0.7rem 1.75rem;
+}
+.hero-actions .btn-outline:hover {
+    border-color: var(--primary);
+    color: var(--primary);
+    background: rgba(6, 182, 212, 0.08);
+}
 .hero-scroll {
     position: absolute;
     bottom: 2rem;
     left: 50%;
     transform: translateX(-50%);
-    color: var(--primary);
-    opacity: 0.5;
+    color: rgba(255,255,255,0.4);
     animation: float 2s ease-in-out infinite;
 }
 
